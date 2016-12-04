@@ -108,21 +108,24 @@ function updateResults(tabbed, useRandom) {
     return possibilities.length
 }
 
-clear.addEventListener('click', function(e) { input.value = '' })
+clear.addEventListener('click', function(e) {
+    input.value = ''
+    updateResults()
+})
 randomize.addEventListener('click', function(e) {
     if (input.value.indexOf('.') != -1)
         input.value = ''
     if (updateResults(true, true) == 1)
         updateResults(true, true)
-    input.focus()
-    input.focus()
+    if (navigator.userAgent.indexOf('Mobile') == -1)
+        input.focus()
 })
 randomizeAll.addEventListener('click', function(e) {
     if (input.value.indexOf('.') != -1)
         input.value = ''
     while(updateResults(true, true)) {}
-    input.focus()
-    input.focus()
+    if (navigator.userAgent.indexOf('Mobile') == -1)
+        input.focus()
 })
 input.addEventListener('input', updateResults)
 input.addEventListener('keydown', function(e) {
@@ -133,8 +136,10 @@ input.addEventListener('keydown', function(e) {
             updateResults(true, false)
     }
 })
-window.addEventListener('click', function(e) { input.focus() })
-window.addEventListener('mouseup', function(e) { input.focus() })
+if (navigator.userAgent.indexOf('Mobile') == -1) {
+    window.addEventListener('click', function(e) { input.focus() })
+    window.addEventListener('mouseup', function(e) { input.focus() })
+}
 
 updateResults()
 
