@@ -1,4 +1,5 @@
 var input = document.getElementById('main')
+var clear = document.getElementById('clear')
 var randomize = document.getElementById('randomize')
 var randomizeAll = document.getElementById('randomize-all')
 var results = document.getElementById('results')
@@ -107,6 +108,7 @@ function updateResults(tabbed, useRandom) {
     return possibilities.length
 }
 
+clear.addEventListener('click', function(e) { input.value = '' })
 randomize.addEventListener('click', function(e) {
     if (input.value.indexOf('.') != -1)
         input.value = ''
