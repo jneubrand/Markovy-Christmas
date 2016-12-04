@@ -96,9 +96,14 @@ function updateResults(tabbed, useRandom) {
             val.push(possibilities[x][0])
         }
         input.value = val.join(' ') + ' '
-        updateResults()
+        return updateResults()
     }
-    console.groupEnd()
+    if (input.value.indexOf('.') != -1) {
+        var item = document.createElement('li')
+        item.classList.add('done')
+        item.innerText = input.value
+        results.appendChild(item)
+    }
     return possibilities.length
 }
 
